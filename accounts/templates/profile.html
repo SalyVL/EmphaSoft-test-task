@@ -1,0 +1,27 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" >
+    <title>Test</title>
+</head>
+<body>
+    {%  include 'navbar.html' %}
+        <div id = 'profile-card'>
+            <div id = 'profile-pic'><img src="/static/images/{{ user.profile_pic }}"></div>
+            <div id = 'profile-info'>
+                {% if user.last_name|length > 0 %}<a><b>Фамилия:</b> {{ user.last_name }}</a>{% endif %}
+                {% if user.first_name|length > 0 %}<a><b>Имя:</b> {{ user.first_name }}</a>{% endif %}
+                {% if user.patronymic|length > 0 %}<a><b>Отчество:</b> {{ user.patronymic }}</a>{% endif %}
+                {% if user.email|length > 0 %}<a><b>Почта:</b> {{ user.email }}</a>{% endif %}
+                {% if user.description|length > 0 %}<a><b>О себе:</b> {{ user.description }}</a>{% endif %}
+            </div>
+            {% if request.user.id == user.id %}<div id = 'submit-button' style="margin-left: auto;"><a href = '/profile_edit'>Редактировать</a></div>{% endif %}
+        </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+<section class = 'navbar'>
+    <ul id = 'navbar-menu'>
+        <li><a href = '/profile/{{request.user.id }}'>Профиль</a></li>
+        <li><a href = '{% url 'accounts:profiles_list' %}'>Список пользователей</a></li>
+        {% if user.is_authenticated %}
+            <li><a href = "{% url 'accounts:logout' %}?next={{ request.path }}">Выйти</a></li>
+        {% else %}
+            <li><a href = "{% url 'accounts:auth_with' %}">Войти</a></li>
+        {% endif %}
+    </ul>
+</section>

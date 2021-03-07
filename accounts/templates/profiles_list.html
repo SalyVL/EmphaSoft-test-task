@@ -1,0 +1,30 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" >
+    <title>Test</title>
+</head>
+<body>
+    {%  include 'navbar.html' %}
+        <div id = 'profile-card'>
+        <table>
+            <tr>
+                <th>Почта</th>
+                <th>Дата регистрации</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td><a href = '/profile/{{ user.id }}' style="color: #2980b9;">🔗 {{ user.email }}</a></td>
+                    <td> | {{ user.date_joined }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
